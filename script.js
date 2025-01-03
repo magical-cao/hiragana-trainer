@@ -97,10 +97,18 @@ const hiraganaData = [
       const button = document.createElement('button');
       button.textContent = option;
       button.onclick = () => {
-        resultDiv.textContent = option === questionData.katakana ? "正确！" : "错误！";
-        resultDiv.style.color = option === questionData.katakana ? "green" : "red";
-        setTimeout(() => loadQuestion(), 1000); // 1秒后加载下一题
-      };
+        if (option === questionData.katakana) {
+            // 回答正确
+            resultDiv.textContent = "正确！";
+            resultDiv.style.color = "green";
+            setTimeout(() => loadQuestion(), 1000); // 1秒后加载下一题
+        } else {
+            // 回答错误
+            resultDiv.textContent = "错误！";
+            resultDiv.style.color = "red";
+            // 不加载下一题，只提示错误
+        }
+    };
       optionsDiv.appendChild(button);
     });
   }
